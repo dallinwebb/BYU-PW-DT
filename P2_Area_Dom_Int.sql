@@ -1,11 +1,12 @@
+-- git test
 SELECT	Area_Unit_Number as AREA_UNIT_NUMBER
-		,REPLACE(REPLACE(Area_Name, 'México', 'Mexico'), ' Area', '') as AREA_NAME
+		,REPLACE(REPLACE(Area_Name, 'Mï¿½xico', 'Mexico'), ' Area', '') as AREA_NAME
 		,CASE
 			WHEN ca.Area_Name LIKE '%Middle East%'          THEN 'ME/Africa N'
 			WHEN ca.Area_Name LIKE '%Europe E%'             THEN 'Europe E'
 			WHEN ca.Area_Name LIKE '%ica W%'                THEN 'NA W'
 			WHEN ca.Area_Name LIKE '%North America Southw%' THEN 'NA SW'
-			WHEN ca.Area_Name LIKE '%México%'               THEN 'Mexico'
+			WHEN ca.Area_Name LIKE '%Mï¿½xico%'               THEN 'Mexico'
 			WHEN ca.Area_Name LIKE '%North America Southe%' THEN 'NA SE'
 			WHEN ca.Area_Name LIKE '%South America S%'      THEN 'SA S'
 			WHEN ca.Area_Name LIKE '%North America Northe%' THEN 'NA NE'
