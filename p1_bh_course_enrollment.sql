@@ -1,0 +1,14 @@
+SELECT 
+    PERSON_ID
+  , bh_COURSE_ID
+  , bh_COURSE_ENROLLMENT_ID
+  , TERM_ID
+  , COURSE_ID
+  , GRADE
+  , CREATED_DATE
+  , start_dt
+  , end_dt
+
+FROM bh_COURSE_ENROLLMENT;
+
+
