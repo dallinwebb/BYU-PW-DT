@@ -1,26 +1,42 @@
-with email as (
-  select person_id, contact_number from PERSON_CONTACT
-  where CONTACT_TYPE_ID = 5
+WITH email AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 5
 ),
 
-email2 as (
-  select person_id, contact_number from PERSON_CONTACT
-  where CONTACT_TYPE_ID = 6
+email2 AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 6
 ),
 
-cell_number as (
-  select person_id, contact_number from PERSON_CONTACT
-  where CONTACT_TYPE_ID = 1
+cell_number AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 1
 ),
 
-home_phone as (
-  select person_id, contact_number from PERSON_CONTACT
-  where CONTACT_TYPE_ID = 2
+home_phone AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 2
 )
 
-select distinct s.PERSON_ID, e.CONTACT_NUMBER email1, e2.CONTACT_NUMBER email2,cn.CONTACT_NUMBER phone1, 
-                hp.CONTACT_NUMBER phone2, PA.ADDRESS1, PA.ADDRESS2, PA.ADDRESS3, PA.ADDRESS4, pa.POSTAL_CODE, pa.COUNTRY_ID, pa.LATITUDE, pa.LONGITUDE, s.DO_NOT_CONTACT
-from STUDENT s
+SELECT DISTINCT
+     s.PERSON_ID
+    ,e.CONTACT_NUMBER email1
+    ,e2.CONTACT_NUMBER email2
+    ,cn.CONTACT_NUMBER phone1
+    ,hp.CONTACT_NUMBER phone2
+    ,PA.ADDRESS1, PA.ADDRESS2
+    ,PA.ADDRESS3, PA.ADDRESS4
+    ,pa.POSTAL_CODE, pa.COUNTRY_ID
+    ,pa.LATITUDE
+    ,pa.LONGITUDE
+    ,s.DO_NOT_CONTACT
+
+FROM 
+  STUDENT s
   LEFT JOIN 
     email e ON (e.person_id = s.person_id)  -- 5: email
   LEFT JOIN 
