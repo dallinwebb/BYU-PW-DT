@@ -8,9 +8,9 @@ SELECT
   , c.MAX_ENROLLMENT 
   , c.MIN_ENROLLMENT 
   , c.PROVIDER_ID
-  , tt.term_type_id
+  , tt.TERM_TYPE_ID
     
 FROM 
     COURSE c
-    LEFT JOIN term_type tt 
-        ON c.provider_id = tt.provider_id;
+    LEFT JOIN TERM_TYPE tt 
+        ON c.PROVIDER_ID = tt.PROVIDER_ID;

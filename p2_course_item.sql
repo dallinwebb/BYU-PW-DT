@@ -3,4 +3,4 @@ SELECT
   , COURSE_ID
   , NAME
     
-FROM course_item
+FROM COURSE_ITEM
