@@ -8,6 +8,3 @@
 	 
  WHERE
      s.PROVIDER_ID = 8387
-
-
-	

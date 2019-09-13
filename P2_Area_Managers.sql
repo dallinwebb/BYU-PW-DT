@@ -15,4 +15,3 @@ WHERE
 	   AND er.PROVIDER_ID = 8387
 				-- role_id = 13 == Area Manager found in role table
 				-- 8387 == BYU-Pathway Worldwide
-

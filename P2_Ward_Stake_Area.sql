@@ -10,7 +10,7 @@
  					WHEN PARENT_UNIT_NAME LIKE '%Europe E%'             THEN 'Europe E'
  					WHEN PARENT_UNIT_NAME LIKE '%ica W%'                THEN 'NA W'
  					WHEN PARENT_UNIT_NAME LIKE '%North America Southw%' THEN 'NA SW'
- 					WHEN PARENT_UNIT_NAME LIKE '%México%'               THEN 'Mexico'
+ 					WHEN PARENT_UNIT_NAME LIKE '%Mï¿½xico%'               THEN 'Mexico'
  					WHEN PARENT_UNIT_NAME LIKE '%North America Southe%' THEN 'NA SE'
  					WHEN PARENT_UNIT_NAME LIKE '%South America S%'      THEN 'SA S'
  					WHEN PARENT_UNIT_NAME LIKE '%Utah South%'           THEN 'Utah S'
@@ -46,4 +46,3 @@ SELECT *
 FROM ward w
 LEFT JOIN stake s ON s.STAKE_UNIT_NUMBER = w.STAKE_UNIT_NUMBER
 LEFT JOIN area a ON a.AREA_UNIT_NUMBER = s.AREA_UNIT_NUMBER
-
