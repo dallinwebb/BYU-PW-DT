@@ -1,0 +1,23 @@
+
+WITH ppp_ranked AS (
+    SELECT PPP.*
+    , CASE
+        WHEN PPP.PPP_STATUS_ID = 4 THEN 400
+        WHEN PPP.PPP_STATUS_ID = 3 THEN 300
+        WHEN PPP.PPP_STATUS_ID = 5 THEN 200
+        WHEN PPP.PPP_STATUS_ID = 2 THEN 100
+        WHEN PPP.PPP_STATUS_ID = 1 THEN 0
+    END +
+    ROW_NUMBER() OVER(PARTITION BY PPP.PERSON_ID ORDER BY PPP.MODIFIED_DATE) status_rank
+    FROM PERSON_PROVIDER_PROGRAM PPP
+), ppp_rownum AS (
+    SELECT p.*, ROW_NUMBER() OVER(PARTITION BY P.PERSON_ID ORDER BY STATUS_RANK DESC) ROW_NUM 
+    FROM ppp_ranked p
+), ppp_distinct AS (
+    SELECT * 
+    FROM ppp_rownum
+    WHERE ROW_NUM = 1
+)
+
+
+--https://codebeautify.org/sqlformatter
