@@ -1,0 +1,73 @@
+-- With Statement version
+WITH EMAIL AS (
+  SELECT person_id, contact_number
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 5
+),
+
+EMAIL2 AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 6
+),
+
+CELL_NUMBER AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 1
+),
+
+HOME_PHONE AS (
+  SELECT person_id, contact_number 
+  FROM PERSON_CONTACT
+  WHERE CONTACT_TYPE_ID = 2
+)
+
+SELECT DISTINCT
+     s.PERSON_ID
+   , e.CONTACT_NUMBER email1
+   , e2.CONTACT_NUMBER email2
+   , cn.CONTACT_NUMBER phone1
+   , hp.CONTACT_NUMBER phone2
+   , PA.ADDRESS1, PA.ADDRESS2
+   , PA.ADDRESS3, PA.ADDRESS4
+   , pa.POSTAL_CODE, pa.COUNTRY_ID
+   , pa.LATITUDE
+   , pa.LONGITUDE
+   , s.DO_NOT_CONTACT
+
+FROM 
+  STUDENT s
+  LEFT JOIN EMAIL e ON (e.PERSON_ID = s.PERSON_ID)  -- 5: email
+  LEFT JOIN EMAIL2 e2 ON (e2.PERSON_ID = s.PERSON_ID) -- 6: amail
+  LEFT JOIN CELL_NUMBER cn ON (cn.PERSON_ID = s.PERSON_ID)  -- 1: cell 
+  LEFT JOIN HOME_PHONE hp ON (hp.PERSON_ID = s.PERSON_ID) -- 2: home
+  LEFT JOIN PERSON_ADDRESS PA ON s.PERSON_ID = pa.PERSON_ID;
+
+
+-- Subquery version
+SELECT DISTINCT
+     s.PERSON_ID
+   , e.CONTACT_NUMBER email1
+   , e2.CONTACT_NUMBER email2
+   , cn.CONTACT_NUMBER phone1
+   , hp.CONTACT_NUMBER phone2
+   , PA.ADDRESS1, PA.ADDRESS2
+   , PA.ADDRESS3, PA.ADDRESS4
+   , pa.POSTAL_CODE, pa.COUNTRY_ID
+   , pa.LATITUDE
+   , pa.LONGITUDE
+   , s.DO_NOT_CONTACT
+
+FROM 
+  STUDENT s
+  LEFT JOIN (SELECT person_id, contact_number FROM PERSON_CONTACT WHERE CONTACT_TYPE_ID = 5) e 
+      ON (e.PERSON_ID = s.PERSON_ID)  -- 5: email
+  LEFT JOIN (SELECT person_id, contact_number FROM PERSON_CONTACT WHERE CONTACT_TYPE_ID = 6) e2 
+      ON (e2.PERSON_ID = s.PERSON_ID) -- 6: amail
+  LEFT JOIN (SELECT person_id, contact_number FROM PERSON_CONTACT WHERE CONTACT_TYPE_ID = 1) cn 
+      ON (cn.PERSON_ID = s.PERSON_ID)  -- 1: cell 
+  LEFT JOIN (SELECT person_id, contact_number FROM PERSON_CONTACT WHERE CONTACT_TYPE_ID = 2) hp 
+      ON (hp.PERSON_ID = s.PERSON_ID) -- 2: home
+  LEFT JOIN PERSON_ADDRESS PA ON s.PERSON_ID = pa.PERSON_ID;
+
